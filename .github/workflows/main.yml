@@ -1,0 +1,27 @@
+name: Laravel CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+      - staging
+  pull_request:
+    branches:
+      - develop
+      - staging
+
+jobs:
+  checkConvention:
+    name: Check Code Style
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: phpcs
+      - name: Run PHP CodeSniffer
+        run: |
+          phpcs --standard=PSR2 --extensions=php app/
