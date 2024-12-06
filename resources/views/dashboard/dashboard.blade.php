@@ -1,5 +1,5 @@
 @extends('layouts.main')
-
+@section('title', 'Dashboard')
 @section('contents')
     <div class="min-h-full">
         <nav class="bg-gray-800">
@@ -52,8 +52,7 @@
                                              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                              alt="">
                                     </button>
-{{--                                    <p id="user-name" class="text-white">{{ auth()->user()->name }}</p>--}}
-                                    <p id="user-name" class="text-white">John Doe</p>
+                                    <p id="user-name" class="text-white">{{ auth()->user()->name }}</p>
                                 </div>
 
                                 <!-- Dropdown menu -->

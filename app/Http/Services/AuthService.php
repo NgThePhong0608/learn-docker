@@ -20,10 +20,13 @@ class AuthService
 
     public function login($request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         if (auth()->attempt($credentials)) {
-            return redirect()->intended('/hello');
+            return redirect()->intended('/home');
         }
 
         return redirect()->back()->with('error', 'Login failed');
@@ -40,6 +43,7 @@ class AuthService
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
         ]);
 
         $user = $this->user->create([
@@ -50,7 +54,7 @@ class AuthService
 
         auth()->login($user);
 
-        return redirect()->intended('/hello');
+        return redirect()->intended('/home');
     }
 
     public function logout()
